@@ -8,7 +8,17 @@ const handler = nextConnect();
 handler
   .use(passportSession)
   .post(passport.authenticate("local"), (req, res) => {
-    res.json({ MSG: "LOGIN SUCCESSFULY", user: req.user });
+    const { _id, fullname, email } = req.user;
+
+    res.json({
+      success: true,
+      msg: "login successfuly!",
+      user: {
+        _id,
+        fullname,
+        email,
+      },
+    });
   });
 
 export default connectDB(handler);
