@@ -2,6 +2,7 @@ import nextConnect from "next-connect";
 import passportSession from "../../../middlewares/passportSession";
 import User from "../../../models/User";
 import connectDB from "../../../middlewares/connectDB";
+import { hashPassword } from "../../../lib/auth";
 
 const handler = nextConnect();
 
@@ -18,20 +19,21 @@ handler
     }
 
     const emailExist = await User.findOne({ email });
-
-    if (emailExist)
+    if (emailExist) {
       res.status(400).json({ error: true, msg: "Already exist!" });
+    }
+
+    const hash = await hashPassword(password, 12);
 
     const user = new User({
       fullname,
       email,
-      password,
+      password: hash,
     });
 
     await user.save();
 
     res.json({ exist: emailExist, user });
-    // Here you check if the username has already been used
   });
 
 export default connectDB(handler);
