@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-
+import Layout from "../components/common/Layout";
 const signin = () => {
   const router = useRouter();
 
@@ -38,8 +38,16 @@ const signin = () => {
     return data;
   };
   return (
-    <div>
-      <form>
+    <Layout>
+      <form
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        <h1>SignIn</h1>
         <input
           type="text"
           placeholder="email"
@@ -56,7 +64,7 @@ const signin = () => {
       </form>
 
       <Link href="/signup">signup</Link>
-    </div>
+    </Layout>
   );
 };
 

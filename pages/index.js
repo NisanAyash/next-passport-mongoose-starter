@@ -1,6 +1,7 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
+import Layout from "../components/common/Layout";
 
 export default function Home() {
   return (
@@ -11,20 +12,22 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1>Home Page</h1>
+        <Layout>
+          <h1>Home Page</h1>
 
-        <Link href="/signin">
-          <a>Login</a>
-        </Link>
+          <Link href="/signin">
+            <a>Login</a>
+          </Link>
 
-        <Link href="/signup">
-          <a>register</a>
-        </Link>
+          <Link href="/signup">
+            <a>register</a>
+          </Link>
 
-        <p>Just auth users could get in to profile page</p>
-        <Link href="/secret">
-          <a>profile</a>
-        </Link>
+          <p>Authenticated users!</p>
+          <Link href="/secret">
+            <a>profile</a>
+          </Link>
+        </Layout>
       </main>
 
       <footer className={styles.footer}>Footer</footer>

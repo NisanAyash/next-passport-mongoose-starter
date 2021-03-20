@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
-
+import Layout from "../components/common/Layout";
 const signup = () => {
   const [state, setState] = useState({
     fullname: "",
@@ -36,8 +36,16 @@ const signup = () => {
   };
 
   return (
-    <div>
-      <form>
+    <Layout>
+      <form
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+        }}
+      >
+        <h1>SignUp</h1>
         <input
           type="text"
           placeholder="fullname"
@@ -63,10 +71,9 @@ const signup = () => {
           onChange={handleChange}
         />
         <button onClick={handleSubmit}>send</button>
+        <Link href="/signin">signin</Link>
       </form>
-
-      <Link href="/signin">signin</Link>
-    </div>
+    </Layout>
   );
 };
 
