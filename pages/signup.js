@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Layout from "../components/common/Layout";
+import { useRouter } from "next/router";
+
 const signup = () => {
+  const router = useRouter();
+
   const [state, setState] = useState({
     fullname: "",
     email: "",
@@ -16,11 +20,17 @@ const signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    console.log("loading");
+
     const d = await fetcher("http://localhost:3000/api/auth/users", {
       ...state,
     });
 
     console.log(d);
+
+    if (d.success) {
+      router.push("/signin");
+    }
   };
 
   const fetcher = async (url, body) => {

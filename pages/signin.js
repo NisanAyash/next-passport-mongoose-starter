@@ -61,6 +61,12 @@ const signin = () => {
           onChange={handleChange}
         />
         <button onClick={handleSubmit}>send</button>
+
+        <p>Try some provider</p>
+
+        <Link href="http://127.0.0.1:3000/api/auth/github/callback">
+          <button>Login with github</button>
+        </Link>
       </form>
 
       <Link href="/signup">signup</Link>

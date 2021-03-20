@@ -33,7 +33,15 @@ handler
 
     await user.save();
 
-    res.json({ exist: emailExist, user });
+    res.json({
+      success: true,
+      msg: "login successfuly!",
+      user: {
+        _id: user._id,
+        email: user.email,
+        fullname: user.fullname,
+      },
+    });
   });
 
 export default connectDB(handler);
