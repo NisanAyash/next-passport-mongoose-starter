@@ -1,15 +1,29 @@
 import React from "react";
 import useFetch from "../hooks/useFetch";
 import Layout from "../components/common/Layout";
+import { useRouter } from "next/router";
+import Link from "next/link";
 const secret = () => {
+  const router = useRouter();
+
   const { response, error, isLoading } = useFetch(
     "http://localhost:3000/api/auth/user",
     {}
   );
 
   if (error) {
-    console.log(error);
-    return <Layout>{JSON.stringify(error.message)}</Layout>;
+    return (
+      <Layout>
+        <p>Error:</p>
+        <p>You aren't authenticated</p>
+        <p>{error.name}</p>
+        <p>{error.message}</p>
+
+        <Link href="/">
+          <button>Go Home.</button>
+        </Link>
+      </Layout>
+    );
   }
 
   if (!response) {
@@ -24,7 +38,9 @@ const secret = () => {
         <p>_id: {response.user._id}</p>
         <p>fullname: {response.user.fullname}</p>
         <p>email: {response.user.email}</p>
-        {/* <p>password: {response.auth.password}</p> */}
+        <Link href="/">
+          <button>Go Home.</button>
+        </Link>
       </Layout>
     )
   );
