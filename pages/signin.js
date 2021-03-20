@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const signin = () => {
+  const router = useRouter();
+
   const [state, setState] = useState({
     email: "",
     password: "",
@@ -18,7 +21,9 @@ const signin = () => {
       ...state,
     });
 
-    console.log(d);
+    if (d.success) {
+      router.push("/secret");
+    }
   };
 
   const fetcher = async (url, body) => {
