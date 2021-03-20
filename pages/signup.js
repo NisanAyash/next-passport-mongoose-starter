@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from "next/link";
 
 const signup = () => {
   const [state, setState] = useState({
@@ -63,6 +64,8 @@ const signup = () => {
         />
         <button onClick={handleSubmit}>send</button>
       </form>
+
+      <Link href="/signin">signin</Link>
     </div>
   );
 };

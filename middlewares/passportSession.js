@@ -5,7 +5,7 @@ import passport from "passport";
 const auth = nextConnect()
   .use(
     session({
-      name: "sess",
+      name: "auth",
       secret: process.env.TOKEN_SECRET,
       cookie: {
         maxAge: 60 * 60 * 8, // 8 hours,
