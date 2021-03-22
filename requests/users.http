@@ -1,0 +1,47 @@
+### Create user
+POST http://localhost:3000/api/auth/users
+Content-Type: application/json
+
+{
+    "email":"nisan@gmail.com",
+    "password": "password",
+    "firstname": "Nisan",
+    "lastname": "Ayash",
+    "phone":"0506650201"
+}
+
+###  Login
+
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+    "email":"nisan@gmail.com",
+    "password": "password"
+}
+
+### Logout
+
+GET http://localhost:3000/api/auth/logout/
+Content-Type: application/json
+
+{}
+
+
+### Get user 
+
+GET http://localhost:3000/api/auth/user
+Content-Type: application/json
+
+{}
+
+### Otp 
+
+POST http://localhost:3000/api/auth/otp/
+Content-Type: application/json
+
+{
+    "verifyCode": "2478"
+}
+
+

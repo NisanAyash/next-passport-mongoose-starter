@@ -1,22 +1,15 @@
-import nextConnect from "next-connect";
-import session from "../lib/session";
-import passport from "passport";
+import session from "express-session";
+const MongoStore = require("connect-mongo");
 
-const auth = nextConnect()
-  .use(
-    session({
-      name: "auth",
-      secret: process.env.TOKEN_SECRET,
-      cookie: {
-        maxAge: 60 * 60 * 8, // 8 hours,
-        httpOnly: true,
-        secure: true,
-        path: "/",
-        sameSite: "lax",
-      },
-    })
-  )
-  .use(passport.initialize())
-  .use(passport.session());
+export default function sessionMiddleware(req, res, next) {
+  const mongoStore = new MongoStore({
+    mongoUrl: process.env.MONGO_URI,
+  });
 
-export default auth;
+  return session({
+    secret: process.env.TOKEN_SECRET,
+    store: mongoStore,
+    resave: true,
+    saveUninitialized: false,
+  })(req, res, next);
+}
