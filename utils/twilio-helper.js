@@ -5,8 +5,6 @@ export const generateVerifyCode = () => {
 export const sendVerificationCode = ({ firstname, phone }) => {
   const code = generateVerifyCode();
   // Twilio code....
-
   console.log(`Send Sms to ${firstname} to phone number: ${phone}`);
-
   return code;
 };

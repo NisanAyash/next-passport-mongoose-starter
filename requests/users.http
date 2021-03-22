@@ -3,11 +3,11 @@ POST http://localhost:3000/api/auth/users
 Content-Type: application/json
 
 {
-    "email":"nisan@gmail.com",
+    "email":"nisan1@gmail.com",
     "password": "password",
     "firstname": "Nisan",
     "lastname": "Ayash",
-    "phone":"0506650201"
+    "phone":"0506650208"
 }
 
 ###  Login
@@ -16,7 +16,7 @@ POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-    "email":"nisan@gmail.com",
+    "email":"nisan1@gmail.com",
     "password": "password"
 }
 
@@ -35,13 +35,19 @@ Content-Type: application/json
 
 {}
 
-### Otp 
+### Otp Genreate otp
+GET    http://localhost:3000/api/auth/otp/
+Content-Type: application/json
+
+{}
+
+### Verify otp  
 
 POST http://localhost:3000/api/auth/otp/
 Content-Type: application/json
 
 {
-    "verifyCode": "2478"
+    "verifyCode": "3823"
 }
 
 

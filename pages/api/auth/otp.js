@@ -3,12 +3,24 @@ import middleware from "../../../middlewares/middleware";
 import Otp from "../../../models/Otp";
 import { isAuth } from "../../../middlewares/authenticate";
 import User from "../../../models/User";
+import { sendVerificationCode } from "../../../utils/twilio-helper";
 
 const handler = nextConnect();
 
 handler
   .use(middleware)
   .use(isAuth)
+  .get(async (req, res, next) => {
+    const code = sendVerificationCode(req.user);
+    const otp = new Otp({
+      phone: req.user.phone,
+      code,
+    });
+
+    await otp.save();
+
+    res.json({ otp });
+  })
   .post(async (req, res, next) => {
     const { verifyCode } = req.body;
 
@@ -28,7 +40,6 @@ handler
         verified: true,
       }
     );
-
     res.json({ auth: req.user, otp });
   });
 
